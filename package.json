@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "webpack-dev-server --config webpack.development.js --open --hot"
+    "dev": "webpack --config webpack.development.js"
   },
   "repository": {
     "type": "git",

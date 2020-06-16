@@ -1,23 +1,17 @@
-import { User } from './User';
-import { Company } from './Company';
-import { CustomMap } from './CustomMap';
-declare global {
-    interface Window { initMap: any }
-}
-// Create the script tag, set the appropriate attributes
-const script = document.createElement('script');
-script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.MAP_API_KEY}&callback=initMap`;
-script.defer = true;
-script.async = true;
-const user = new User();
-const company = new Company();
-// Attach your callback function to the `window` object
-window.initMap = function() {
-    const map = new CustomMap('map');
-    map.addMarker(user);
-    map.addMarker(company);
-};
+import { Sorter } from './Sorter';
+import { NumbersCollection } from './NumbersCollection';
+import { CharactersCollection } from './CharactersCollection';
+import { LinkedList } from './LinkedLIst';
 
-// Append the 'script' element to 'head'
-document.head.appendChild(script);
-console.log(user, company);
+const sort1 = new NumbersCollection([-1, 0, 3, 2]);
+sort1.sort();
+console.log(sort1.data);
+const sort2 = new CharactersCollection('rbc');
+sort2.sort();
+console.log(sort2.data);
+const sort3 = new LinkedList();
+sort3.add(5);
+sort3.add(1);
+sort3.add(3);
+sort3.sort();
+sort3.print()
