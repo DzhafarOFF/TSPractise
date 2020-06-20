@@ -1,17 +1,14 @@
-import { Sorter } from './Sorter';
-import { NumbersCollection } from './NumbersCollection';
-import { CharactersCollection } from './CharactersCollection';
-import { LinkedList } from './LinkedLIst';
+import { CsvFileReader } from './CsvFileReader';
+import { MatchResult } from './MatchResult';
+import { MatchReader } from './MatchReader';
+import { Summary } from './Summary';
+import { WinsAnalysis } from './analyzers/WinsAnalysis';
+import { ConsoleReport } from './reportTargets/ConsoleReport';
 
-const sort1 = new NumbersCollection([-1, 0, 3, 2]);
-sort1.sort();
-console.log(sort1.data);
-const sort2 = new CharactersCollection('rbc');
-sort2.sort();
-console.log(sort2.data);
-const sort3 = new LinkedList();
-sort3.add(5);
-sort3.add(1);
-sort3.add(3);
-sort3.sort();
-sort3.print()
+console.log('-------------------------------------------------')
+const csvFR = new CsvFileReader('data.csv');
+const matchReader = new MatchReader(csvFR);
+matchReader.load();
+
+const summary = new Summary(new WinsAnalysis('Man United'), new ConsoleReport());
+summary.buildAndPrintReport(matchReader.matches);
